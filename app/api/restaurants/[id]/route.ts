@@ -5,22 +5,29 @@ import { Restaurant } from "@/app/components/RestaurantCard";
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await context.params;
     const filePath = path.join(process.cwd(), "public", "restaurants.json");
     const data = await fs.readFile(filePath, "utf-8");
-    const restaurants = JSON.parse(data);
+    const restaurants: Restaurant[] = JSON.parse(data);
 
-    const restaurant = restaurants.find((r: Restaurant) => r.id === Number(params.id));
+    const restaurant = restaurants.find((r) => r.id === Number(id));
 
     if (!restaurant) {
-      return NextResponse.json({ error: "Restaurant not found" }, { status: 404 });
+      return NextResponse.json(
+        { error: "Restaurant not found" },
+        { status: 404 }
+      );
     }
 
     return NextResponse.json(restaurant);
   } catch (err) {
     console.error("Error reading restaurants.json", err);
-    return NextResponse.json({ error: "Failed to load restaurant" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to load restaurant" },
+      { status: 500 }
+    );
   }
 }

@@ -2,6 +2,7 @@
 import { Restaurant } from "@/app/components/RestaurantCard";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function RestaurantPage() {
   const { id } = useParams();
@@ -49,14 +50,16 @@ export default function RestaurantPage() {
   if (!restaurant) return <p className="p-6">Restaurant not found ❌</p>;
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
+    <div className="max-w-2xl mx-auto p-6 mt-2">
       <h1 className="text-3xl font-bold mb-2">{restaurant.name}</h1>
       <p className="text-gray-600 mb-4">{restaurant.city}</p>
       <p className="text-gray-500 mb-6">{restaurant.description}</p>
-      <img
+      <Image
         src={restaurant.image_url}
         alt={restaurant.name}
         className="rounded mb-6"
+        width={400}
+        height={400}
       />
 
       <h2 className="text-xl font-semibold mb-4">Make a Reservation</h2>

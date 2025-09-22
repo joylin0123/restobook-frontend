@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export interface Restaurant {
     id: number;
     name: string;
@@ -12,10 +14,12 @@ export interface Restaurant {
 export default function RestaurantCard({ restaurant }: { restaurant: Restaurant }) {
     return (
       <div className="cursor-pointer bg-white rounded-lg shadow hover:shadow-lg overflow-hidden transition transform hover:-translate-y-1">
-        <img
+        <Image
           src={restaurant.image_url}
           alt={restaurant.name}
           className="h-48 w-full object-cover"
+          width={400}
+          height={400}
         />
         <div className="p-4">
           <h2 className="text-lg font-semibold">{restaurant.name}</h2>
