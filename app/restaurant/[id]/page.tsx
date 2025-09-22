@@ -1,10 +1,11 @@
 "use client";
+import { Restaurant } from "@/app/components/RestaurantCard";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function RestaurantPage() {
   const { id } = useParams();
-  const [restaurant, setRestaurant] = useState<any>(null);
+  const [restaurant, setRestaurant] = useState<Restaurant>();
   const [loading, setLoading] = useState(true);
 
   const [formData, setFormData] = useState({

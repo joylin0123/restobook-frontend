@@ -1,10 +1,12 @@
-interface Restaurant {
+export interface Restaurant {
     id: number;
     name: string;
     location?: string;
     city?: string;
     cuisine?: string;
+    image_url: string;
     average_rating?: number;
+    description?: number;
 }
   
 export default function RestaurantCard({ restaurant }: { restaurant: Restaurant }) {

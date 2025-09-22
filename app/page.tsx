@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import RestaurantCard from "./components/RestaurantCard";
+import RestaurantCard, { Restaurant } from "./components/RestaurantCard";
 
 export default function Home() {
-  const [restaurants, setRestaurants] = useState<any[]>([]);
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function Home() {
   const filtered = restaurants.filter(
     (r) =>
       r.name.toLowerCase().includes(query.toLowerCase()) ||
-      r.city.toLowerCase().includes(query.toLowerCase()) ||
+      r.city?.toLowerCase().includes(query.toLowerCase()) ||
       r.cuisine?.toLowerCase().includes(query.toLowerCase())
   );
 

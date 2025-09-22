@@ -1,6 +1,17 @@
 import { NextResponse } from "next/server";
 
-const reservations: any[] = [];
+
+
+export interface Reservation {
+  id: number;
+  restaurantId: number;
+  name: string;
+  date: string;
+  time: string;
+  people: number;
+}
+
+const reservations: Reservation[] = [];
 
 export async function POST(req: Request) {
   const data = await req.json();

@@ -1,8 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
+import { Restaurant } from "../components/RestaurantCard";
+import { Reservation } from "../api/reservations/route";
 
 export default function ReservationsPage() {
-  const [reservations, setReservations] = useState<any[]>([]);
+  const [reservations, setReservations] = useState<Reservation[]>([]);
   const [restaurants, setRestaurants] = useState<Record<number, string>>({});
   const [loading, setLoading] = useState(true);
 
@@ -15,7 +17,7 @@ export default function ReservationsPage() {
       const restaurantsData = await resRestaurants.json();
 
       const mapping: Record<number, string> = {};
-      restaurantsData.forEach((r: any) => {
+      restaurantsData.forEach((r: Restaurant) => {
         mapping[r.id] = r.name;
       });
 
